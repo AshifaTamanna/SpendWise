@@ -1,0 +1,602 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e6e4e8dd;
+    color: #1f2937;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ================= MAIN LAYOUT ================= */
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 220px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px 14px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 4px 10px 25px;
+
+    font-size: 18px;
+    font-weight: 700;
+    color:#060e79;
+}
+
+.logo i {
+    font-size: 20px;
+}
+
+
+/* NAV */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 11px 12px;
+
+    border-radius: 7px;
+
+    font-size: 13px;
+    color: #4b5563;
+
+    transition: 0.2s;
+}
+
+.nav-item i {
+    width: 17px;
+    font-size: 13px;
+}
+
+.nav-item:hover {
+    background: #d9dff0;
+    color: #060e79;
+}
+
+.nav-item.active {
+    background: #d9dff0;
+    color: #0c0f46;
+    font-weight: 600;
+}
+
+
+/* LOGOUT */
+
+.logout {
+    margin-top: auto;
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content {
+    flex: 1;
+    padding: 28px 32px;
+    overflow: hidden;
+}
+
+
+/* ================= HEADER ================= */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
+
+.welcome p {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+/* NOTIFICATION */
+
+.notification {
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    color: #4b5563;
+    cursor: pointer;
+}
+.notification:hover
+{
+    color: #060e79;
+}
+
+
+/* PROFILE */
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-image {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #d9dff0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #060e79;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info strong {
+    font-size: 12px;
+}
+
+.profile-info small {
+    font-size: 9px;
+    color: #9ca3af;
+}
+
+
+/* ADD TRANSACTION */
+
+.add-btn {
+    border: none;
+
+    background: #060e79;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.add-btn:hover {
+    background:#232bc0;
+}
+
+
+/* ================= SUMMARY CARDS ================= */
+
+.summary-cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.summary-card {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 18px 20px;
+    min-height: 125px;
+}
+
+.card-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.amount {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.balance {
+    color: #0c0f46;
+}
+
+.income {
+    color: #0c0f46;
+}
+
+.expense {
+    color: #dc2626;
+}
+
+.card-change {
+    font-size: 10px;
+}
+
+.card-change i {
+    font-size: 8px;
+    margin-right: 3px;
+}
+
+.positive {
+    color: #0c0f46;
+}
+
+.negative {
+    color: #dc2626;
+}
+
+
+/* ================= BOTTOM ================= */
+
+.dashboard-bottom {
+    display: flex;
+    gap: 16px;
+}
+
+.dashboard-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.expense-overview {
+    flex: 1.1;
+}
+
+.transactions-box {
+    flex: 1;
+}
+
+
+/* ================= BOX HEADER ================= */
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.box-header h3 {
+    font-size: 13px;
+}
+
+.box-header a {
+    color: #0c0f46;
+    font-size: 13px;
+}
+
+
+/* ================= EXPENSE ================= */
+
+.expense-content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+/* DONUT */
+
+.donut {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #2684d9 0deg 72deg,
+        #f45151 72deg 122deg,
+        #f3b22f 122deg 208deg,
+        #f59e0b 208deg 294deg,
+        #65a30d 294deg 360deg
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.donut-center {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.donut-center strong {
+    font-size: 12px;
+}
+
+.donut-center span {
+    font-size: 8px;
+    color: #9ca3af;
+    margin-top: 3px;
+}
+
+
+/* EXPENSE LIST */
+
+.expense-list {
+    flex: 1;
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    padding: 6px 0;
+}
+
+.expense-item > span {
+    color: #6b7280;
+}
+
+.expense-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.food {
+    background: #2684d9;
+}
+
+.transport {
+    background: #f45151;
+}
+
+.shopping {
+    background: #f3b22f;
+}
+
+.bills {
+    background: #f59e0b;
+}
+
+.others {
+    background: #65a30d;
+}
+
+
+/* ================= TRANSACTIONS ================= */
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+.transaction-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.food-icon {
+    background: #fff2d8;
+    color: #e99a00;
+}
+
+.transport-icon {
+    background: #e8f2ff;
+    color: #3182ce;
+}
+
+.salary-icon {
+    background: #e8f7ed;
+    color: #238b45;
+}
+
+.shopping-icon {
+    background: #ffecec;
+    color: #e34a4a;
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.transaction-info strong {
+    font-size: 11px;
+}
+
+.transaction-info span {
+    font-size: 9px;
+    color: #9ca3af;
+
+    margin-top: 3px;
+}
+
+.transaction-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.transaction-right strong {
+    font-size: 10px;
+}
+
+.transaction-right span {
+    font-size: 8px;
+    color: #9ca3af;
+
+    margin-top: 3px;
+}
+
+.red {
+    color: #dc2626;
+}
+
+.green {
+    color: #15803d;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .dashboard-bottom {
+        flex-direction: column;
+    }
+
+    .expense-content {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .sidebar {
+        width: 65px;
+        padding: 20px 8px;
+    }
+
+    .logo span,
+    .nav-item span {
+        display: none;
+    }
+
+    .logo {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .nav-item {
+        justify-content: center;
+    }
+
+    .main-content {
+        padding: 18px;
+    }
+
+    .summary-cards {
+        flex-direction: column;
+    }
+
+    .header-right .profile-info,
+    .header-right .notification {
+        display: none;
+    }
+
+    .top-header {
+        align-items: flex-start;
+    }
+
+    .add-btn {
+        padding: 9px 11px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .main-content {
+        padding: 14px;
+    }
+
+    .welcome h2 {
+        font-size: 16px;
+    }
+
+    .add-btn {
+        font-size: 10px;
+    }
+
+    .expense-content {
+        flex-direction: column;
+    }
+
+    .expense-list {
+        width: 100%;
+    }
+}
