@@ -182,16 +182,15 @@ require_once '../controllers/dashboard_process.php';
             </div>
 
             <nav class="nav">
-                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
-                <a href="add-transaction.php" class="nav-item"><i class="fa-solid fa-wallet"></i><span>Wallet</span></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transactions</span></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-layer-group"></i><span>Categories</span></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-chart-column"></i><span>Reports</span></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+                <a href="dashboard.php" class="nav-item active"><i class="fa-solid fa-house"></i><span>Dashboard</span></a>
+                <a href="transactions.php" class="nav-item"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transactions</span></a>
+                <a href="budget.php" class="nav-item"><i class="fa-solid fa-chart-pie"></i><span>Budget</span></a>
+                <a href="reports.php" class="nav-item"><i class="fa-solid fa-chart-column"></i><span>Reports</span></a>
+                <a href="settings.php" class="nav-item"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
             </nav>
 
             <div class="logout">
-                <a href="login.php" class="nav-item">
+                <a href="../logout.php" class="nav-item">
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
@@ -222,6 +221,32 @@ require_once '../controllers/dashboard_process.php';
                     </button>
                 </div>
             </header>
+
+            <!-- MONTH SELECTOR -->
+            <div class="month-selector-container">
+                <label for="monthYear" class="month-selector-label">View Month:</label>
+                <select id="monthYear" class="month-selector">
+                    <option value="<?php echo date('Y-m'); ?>">Current Month (<?php echo date('F Y'); ?>)</option>
+                    <?php if (!empty($monthYearList)): ?>
+                        <?php foreach ($monthYearList as $record): ?>
+                            <?php
+                                $month = $record['month'];
+                                $year = $record['year'];
+                                $monthName = date('F', mktime(0, 0, 0, $month, 1));
+                                $value = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT);
+                            ?>
+                            <option value="<?php echo $value; ?>"><?php echo $monthName . ' ' . $year; ?></option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+
+            <script>
+                document.getElementById('monthYear').addEventListener('change', function() {
+                    const [year, month] = this.value.split('-');
+                    window.location.href = 'dashboard.php?month=' + month + '&year=' + year;
+                });
+            </script>
 
             <div class="summary-cards">
                 <div class="summary-card">
@@ -279,7 +304,7 @@ require_once '../controllers/dashboard_process.php';
                 <div class="dashboard-box transactions-box">
                     <div class="box-header">
                         <h3>Recent Transactions</h3>
-                        <a href="#">View All</a>
+                        <a href="transactions.php">View All</a>
                     </div>
 
                     <div class="transaction-list">
@@ -353,6 +378,12 @@ require_once '../controllers/dashboard_process.php';
                         <label for="category">Category</label>
                         <input type="text" id="category" name="category" placeholder="Food, Salary, Transport, Bills">
                         <div class="error-message" id="categoryError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transaction_date">Date</label>
+                        <input type="date" id="transaction_date" name="transaction_date" value="<?php echo date('Y-m-d'); ?>">
+                        <div class="error-message" id="dateError"></div>
                     </div>
                 </div>
 

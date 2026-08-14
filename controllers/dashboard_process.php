@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_transaction'])) {
     $amount = trim($_POST['amount'] ?? '');
     $type = trim($_POST['type'] ?? '');
     $category = trim($_POST['category'] ?? '');
+    $transaction_date = trim($_POST['transaction_date'] ?? '');
 
     if ($title === '') {
         $dashboardErrors[] = 'Title is required.';
@@ -42,8 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_transaction'])) {
         $dashboardErrors[] = 'Category is required.';
     }
 
+    if ($transaction_date === '') {
+        $dashboardErrors[] = 'Transaction date is required.';
+    }
+
     if (empty($dashboardErrors)) {
-        $inserted = $db->addTransaction($userId, $title, (float) $amount, $type, $category, $conn);
+        $inserted = $db->addTransaction($userId, $title, (float) $amount, $type, $category, $conn, $transaction_date);
 
         if ($inserted) {
             $dashboardSuccess = 'Transaction added successfully.';
@@ -62,5 +67,31 @@ $totalBalance = $totalIncome - $totalExpense;
 
 $recentTransactions = $db->getRecentTransactions($userId, $conn, 5);
 $expenseBreakdown = $db->getExpenseBreakdown($userId, $conn);
+
+// Get month list for selector
+$monthYearList = $db->getMonthYearList($userId, $conn);
+
+$currentMonth = date('m');
+$currentYear = date('Y');
+
+// Check if user selected a different month
+$selectedMonth = isset($_GET['month']) ? (int) $_GET['month'] : $currentMonth;
+$selectedYear = isset($_GET['year']) ? (int) $_GET['year'] : $currentYear;
+
+// Validate month range
+if ($selectedMonth < 1 || $selectedMonth > 12) {
+    $selectedMonth = $currentMonth;
+}
+
+// Get selected month data
+if ($selectedMonth !== $currentMonth || $selectedYear !== $currentYear) {
+    $summary = $db->getDashboardSummary($userId, $conn, $selectedMonth, $selectedYear);
+    $totalIncome = (float) ($summary['total_income'] ?? 0);
+    $totalExpense = (float) ($summary['total_expense'] ?? 0);
+    $totalBalance = $totalIncome - $totalExpense;
+    
+    $recentTransactions = $db->getRecentTransactions($userId, $conn, 5, $selectedMonth, $selectedYear);
+    $expenseBreakdown = $db->getExpenseBreakdown($userId, $conn, $selectedMonth, $selectedYear);
+}
 
 $conn->close();
